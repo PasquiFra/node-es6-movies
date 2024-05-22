@@ -78,11 +78,14 @@ class Movie {
         this.type = type
     }
 
+    getAverage() {
 
+    }
 
-    // toString() {
-
-    // }
+    toString() {
+        return `${this.title} è un film di genere ${this.genre}. 
+        E' stato rilasciato nel ${this.year} ed ha un voto di ${this.rating}.`
+    }
 }
 
 class TvSerie extends Movie {
@@ -91,15 +94,23 @@ class TvSerie extends Movie {
         super(title, year, genre, rating, type);
         this.seasons = seasons;
     }
+
+    toString() {
+        return `${this.title} è una serie tv di genere ${this.genre}. 
+        La prima stagione è stata rilasciato nel ${this.year} ed in totale sono state prodotte ${this.seasons} stagioni. 
+        Ha un voto di ${this.rating}.`
+    }
 }
 
 const createInstance = collection.map(({ title, year, genre, rating, type, seasons }) => {
 
     if (type === 'movie') {
         const movie = new Movie(title, year, genre, rating, type);
+        console.log(movie.toString())
     }
     if (type === 'tv') {
         const tvSerie = new TvSerie(title, year, genre, rating, type, seasons);
+        console.log(tvSerie.toString())
     }
 
 })
