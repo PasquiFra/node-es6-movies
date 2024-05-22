@@ -63,6 +63,22 @@ const collection = [
         rating: 9.3,
         type: "tv",
         seasons: 8
+    },
+    {
+        title: "Mad Max: Fury Road",
+        year: 2015,
+        genre: "Action",
+        rating: 8.1,
+        type: "movie",
+        seasons: ''
+    },
+    {
+        title: "Gladiator",
+        year: 2000,
+        genre: "Action",
+        rating: 8.5,
+        type: "movie",
+        seasons: ''
     }
 ];
 
@@ -93,8 +109,7 @@ class Movie {
     }
 
     toString() {
-        return `${this.title} è un film di genere ${this.genre}. 
-        E' stato rilasciato nel ${this.year} ed ha un voto di ${this.rating}.`
+        return `${this.title} è un film di genere ${this.genre}. E' stato rilasciato nel ${this.year} ed ha un voto di ${this.rating}.`
     }
 
 }
@@ -109,9 +124,7 @@ class TvSerie extends Movie {
     }
 
     toString() {
-        return `${this.title} è una serie tv di genere ${this.genre}. 
-        La prima stagione è stata rilasciato nel ${this.year} ed in totale sono state prodotte ${this.seasons} stagioni. 
-        Ha un voto di ${this.rating}.`
+        return `${this.title} è una serie tv di genere ${this.genre}. La prima stagione è stata rilasciato nel ${this.year} ed in totale sono state prodotte ${this.seasons} stagioni. Ha un voto di ${this.rating}.`
     }
 }
 
@@ -124,6 +137,7 @@ const createInstance = collection.map(({ title, year, genre, rating, type, seaso
 
         //console.log(movie.toString());
 
+        // popolo nella classe la lista dei generi di film
         movie.setGenres(movie.genre);
 
     }
@@ -140,7 +154,7 @@ const createInstance = collection.map(({ title, year, genre, rating, type, seaso
 //console.log(movies)
 
 //Dichiaro il genere da ricercare
-const genreToFilter = 'Crime';
+const genreToFilter = 'Action';
 
 // Creo la funzione che mi determina il rating medio del genere
 function averageRatingByGenre(movies, genreToFilter) {
@@ -158,3 +172,11 @@ const avgRating = averageRatingByGenre(movies, genreToFilter);
 //console.log(avgRating);
 
 
+// setto una funzione che filtra i film per genere e restituisce la presentazione di ciascuno
+function filterMoviesByGenre(movies, genreToFilter) {
+    return movies.filter(movie => movie.genre === genreToFilter).map(movie => movie.toString());
+}
+
+const filteredMovies = filterMoviesByGenre(movies, genreToFilter);
+
+console.log(filteredMovies)
