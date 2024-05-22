@@ -93,3 +93,15 @@ class TvSerie extends Movie {
     }
 }
 
+const createInstance = collection.map(({ title, year, genre, rating, type, seasons }) => {
+
+    if (type === 'movie') {
+        const movie = new Movie(title, year, genre, rating, type);
+    }
+    if (type === 'tv') {
+        const tvSerie = new TvSerie(title, year, genre, rating, type, seasons);
+    }
+
+})
+
+console.log(createInstance)
