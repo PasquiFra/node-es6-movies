@@ -139,8 +139,10 @@ const createInstance = collection.map(({ title, year, genre, rating, type, seaso
 
 //console.log(movies)
 
+//Dichiaro il genere da ricercare
 const genreToFilter = 'Crime';
 
+// Creo la funzione che mi determina il rating medio del genere
 function averageRatingByGenre(movies, genreToFilter) {
     const filteredMovies = movies.filter(movie => movie.genre === genreToFilter);
     //console.log(filteredMovies)
@@ -150,6 +152,7 @@ function averageRatingByGenre(movies, genreToFilter) {
     return `La media dei voti per il genere ${genreToFilter} è: ${avg}`
 }
 
+//invoco la funzione per calcolare il rating medio per genere ed assegno il risultato ad una variabile
 const avgRating = averageRatingByGenre(movies, genreToFilter);
 
 //console.log(avgRating);
