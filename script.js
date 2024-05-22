@@ -1,3 +1,4 @@
+// creo l'array collection con tutti i film e serie 
 const collection = [
     {
         title: "Inception",
@@ -65,9 +66,16 @@ const collection = [
     }
 ];
 
-console.log(collection);
+//console.log(collection);
 
+//creo le variabili movies e series
+const movies = [];
+const tvSeries = [];
+
+// Creo la classe Movie
 class Movie {
+
+    genres = [];
 
 
     constructor(title, year, genre, rating, type) {
@@ -78,19 +86,24 @@ class Movie {
         this.type = type
     }
 
-    getAverage() {
-
+    setGenres(genre) {
+        if (!this.genres.includes(genre)) {
+            this.genres.push(genre)
+        };
     }
 
     toString() {
         return `${this.title} è un film di genere ${this.genre}. 
         E' stato rilasciato nel ${this.year} ed ha un voto di ${this.rating}.`
     }
+
 }
 
+// Creo la classe TvSerie
 class TvSerie extends Movie {
 
     constructor(title, year, genre, rating, type, seasons) {
+        // con super() riprendo le variabili della classe madre
         super(title, year, genre, rating, type);
         this.seasons = seasons;
     }
@@ -106,13 +119,39 @@ const createInstance = collection.map(({ title, year, genre, rating, type, seaso
 
     if (type === 'movie') {
         const movie = new Movie(title, year, genre, rating, type);
-        console.log(movie.toString())
+
+        movies.push(movie);
+
+        //console.log(movie.toString());
+
+        movie.setGenres(movie.genre);
+
     }
     if (type === 'tv') {
         const tvSerie = new TvSerie(title, year, genre, rating, type, seasons);
-        console.log(tvSerie.toString())
+
+        tvSeries.push(tvSerie);
+
+        //console.log(tvSerie.toString())
     }
 
 })
 
-console.log(createInstance)
+//console.log(movies)
+
+const genreToFilter = 'Crime';
+
+function averageRatingByGenre(movies, genreToFilter) {
+    const filteredMovies = movies.filter(movie => movie.genre === genreToFilter);
+    //console.log(filteredMovies)
+    const total = filteredMovies.reduce((sum, movie) => sum + movie.rating, 0);
+    //console.log(total)
+    const avg = total / filteredMovies.length;
+    return `La media dei voti per il genere ${genreToFilter} è: ${avg}`
+}
+
+const avgRating = averageRatingByGenre(movies, genreToFilter);
+
+//console.log(avgRating);
+
+
