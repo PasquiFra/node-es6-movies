@@ -93,13 +93,51 @@ class Movie {
 
     genres = [];
 
+    #title;
+    #year;
+    #genre;
+    #rating;
 
     constructor(title, year, genre, rating, type) {
-        this.title = title
-        this.year = year
-        this.genre = genre
-        this.rating = rating
-        this.type = type
+        this.#title = title
+        this.#year = year
+        this.#genre = genre
+        this.#rating = rating
+
+    }
+
+    // GET e SET di title
+    get title() {
+        return this.#title;
+    }
+    set title(title) {
+        // se voglio cambiare il nome del film posso farlo tramite questo metodo
+        this.#title = title
+        // se voglio dire che la proprietà è read-only posso restituire un errore qui
+    }
+
+    // GET e SET di genre
+    get genre() {
+        return this.#genre;
+    }
+    set genre(genre) {
+        this.#genre = genre
+    }
+
+    // GET e SET di year
+    get year() {
+        return this.#year;
+    }
+    set year(year) {
+        this.#year = year
+    }
+
+    // GET e SET di rating
+    get rating() {
+        return this.#rating;
+    }
+    set rating(rating) {
+        this.#rating = rating
     }
 
     setGenres(genre) {
@@ -179,4 +217,29 @@ function filterMoviesByGenre(movies, genreToFilter) {
 
 const filteredMovies = filterMoviesByGenre(movies, genreToFilter);
 
-console.log(filteredMovies)
+
+
+//creo la classe Cart 
+class Cart {
+    #price = 3.99;
+    #movies = [];
+
+    get movies() {
+        return this.movies;
+    }
+
+    addMovie(movie) {
+        if (this.#movies.find(m => m.title === movie.title)) {
+            return
+        } KS
+        this.#movies.push(movie)
+    }
+
+    removeMovie(movie) {
+        this.#movies = this.#movies.filter(m => m.title !== movie.title);
+    }
+
+    getTotal() {
+        return this.#movies.length * this.#price;
+    }
+}
